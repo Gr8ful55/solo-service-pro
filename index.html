@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#7c3aed">
+<title>Solo Service Pro</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--pk:#7c3aed;--pkl:#f3e8ff;--g:#16a34a;--gl:#dcfce7;--r:#dc2626;--rl:#fee2e2;--b:#2563eb;--bl:#eff6ff;--am:#d97706;--aml:#fef3c7;--cy:#0891b2;--gray:#6b7280;--bdr:#e5e7eb;--card:#fff;--bg:#f5f5f7;--safe-b:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;overscroll-behavior:none}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:#1a1a1a;display:flex;flex-direction:column;font-size:15px}
+#topnav{background:#fff;border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 16px;flex-shrink:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-brand{font-size:15px;font-weight:700;color:var(--pk);white-space:nowrap;padding:14px 14px 14px 0;border-right:1px solid var(--bdr);margin-right:6px}
+.nav-btn{padding:14px 12px;font-size:13px;font-weight:500;color:var(--gray);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;min-height:44px}
+.nav-btn.active{color:var(--pk);border-bottom-color:var(--pk)}
+#content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(68px + var(--safe-b))}
+@media(min-width:700px){#content{padding-bottom:16px}#bottomnav{display:none!important}#topnav{display:flex}}
+@media(max-width:699px){#topnav{display:none}}
+#bottomnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bdr);display:flex;align-items:stretch;z-index:50;padding-bottom:var(--safe-b);height:calc(68px + var(--safe-b))}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;cursor:pointer;padding:8px 2px;color:var(--gray);font-size:10px;font-weight:500;min-height:44px}
+.bnav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bnav-btn.active{color:var(--pk)}
+#install-banner{background:var(--pk);color:#fff;padding:10px 16px;display:none;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0;font-size:13px}
+#install-banner button{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer}
+#install-banner .cx{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:0 4px;opacity:.7}
+main{max-width:700px;margin:0 auto;padding:16px 14px;width:100%}
+.page{display:none}.page.active{display:block}
+h2{font-size:19px;font-weight:700;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:14px}
+.card-title{font-size:11px;font-weight:600;color:var(--gray);margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.card-val{font-size:24px;font-weight:700}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:500px){.g3{grid-template-columns:1fr 1fr}}
+label{font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:4px;margin-top:14px}
+input,select,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--bdr);border-radius:10px;font-size:16px;font-family:inherit;outline:none;background:#fff;-webkit-appearance:none;appearance:none;transition:border .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--pk)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:420px){.frow{grid-template-columns:1fr}}
+.btn{padding:12px 18px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:opacity .15s;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:active{opacity:.75}
+.btn-primary{background:var(--pk);color:#fff}
+.btn-secondary{background:var(--bg);border:1.5px solid var(--bdr);color:#374151}
+.btn-danger{background:var(--r);color:#fff}
+.btn-green{background:var(--g);color:#fff}
+.btn-export{background:#1a1a1a;color:#fff}
+.btn-sms{background:var(--g);color:#fff}
+.btn-email{background:var(--cy);color:#fff}
+.btn-sm{padding:7px 14px;font-size:13px;min-height:36px;border-radius:8px}
+.btn-xs{padding:4px 10px;font-size:12px;min-height:32px;border-radius:6px}
+.rec-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:14px;margin-bottom:10px}
+.rec-title{font-weight:600;font-size:15px}
+.rec-sub{font-size:12px;color:var(--gray);margin-top:2px}
+.rec-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.bg{background:var(--gl);color:#15803d}.ba{background:var(--aml);color:#92400e}
+.br{background:var(--rl);color:#b91c1c}.bb{background:var(--bl);color:#1d4ed8}
+.bp{background:var(--pkl);color:var(--pk)}.bc{background:#cffafe;color:#0e7490}
+.empty{text-align:center;color:var(--gray);padding:32px 16px;font-size:14px}
+.section-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.export-row{display:flex;gap:8px;flex-wrap:wrap}
+.pl{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f3f4f6;font-size:14px}
+.pl:last-child{border:none;font-weight:700;font-size:15px}
+.mini-chart{display:flex;align-items:flex-end;gap:3px;height:56px;margin-top:8px}
+.bar{flex:1;border-radius:4px 4px 0 0;min-height:4px}
+.tip-pill{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tip-opt{padding:7px 14px;border-radius:20px;font-size:13px;border:1.5px solid var(--bdr);background:#fff;cursor:pointer;min-height:36px}
+.tip-opt.sel{background:var(--gl);border-color:var(--g);color:#15803d}
+.irs-box{background:linear-gradient(135deg,#1e3a5f,#1e40af);border-radius:14px;padding:20px;color:#fff;margin-bottom:14px}
+.irs-box h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.irs-box p{font-size:13px;opacity:.8;margin-bottom:10px}
+.irs-amount{font-size:30px;font-weight:800;margin:6px 0}
+.irs-deadline{font-size:12px;background:rgba(255,255,255,.15);border-radius:6px;padding:4px 10px;display:inline-block;margin-bottom:12px}
+.irs-btn{background:#fff;color:#1e40af;border:none;border-radius:8px;padding:11px 20px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.quarters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.qcard{background:var(--card);border:1.5px solid var(--bdr);border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer}
+.qcard.active{border-color:var(--pk);background:var(--pkl)}
+.qcard .ql{font-size:11px;color:var(--gray)}.qcard .qd{font-size:11px;font-weight:600}.qcard .qs{font-size:11px;margin-top:3px;color:var(--pk);font-weight:600}
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;justify-content:center}
+@media(min-width:600px){#modal-overlay{align-items:center;padding:16px}}
+#modal-box{background:#fff;border-radius:20px 20px 0 0;padding:24px 20px;width:100%;max-height:92vh;overflow-y:auto;padding-bottom:calc(24px + var(--safe-b))}
+@media(min-width:600px){#modal-box{border-radius:18px;max-width:480px;padding-bottom:24px}}
+.filter-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.filter-btn{padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;border:1.5px solid var(--bdr);background:#fff;cursor:pointer;white-space:nowrap;min-height:36px}
+.filter-btn.active{background:var(--pk);color:#fff;border-color:var(--pk)}
+.client-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:14px;margin-bottom:10px}
+
+/* REMINDER SPECIFIC */
+.reminder-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-top:4px}
+.chip-warn{background:#fef3c7;color:#92400e}
+.chip-ok{background:var(--gl);color:#15803d}
+.chip-due{background:var(--rl);color:#b91c1c}
+.upcoming-header{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;padding:8px 0 6px;border-bottom:1px solid var(--bdr);margin-bottom:10px}
+.pay-option{display:flex;align-items:center;gap:14px;border-radius:12px;padding:13px 16px;font-weight:600;font-size:14px;cursor:pointer;width:100%;border:none;text-align:left;text-decoration:none;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div id="install-banner">
+  <span>📲 Add to home screen for the best experience!</span>
+  <button onclick="document.getElementById('install-banner').style.display='none'">Got it</button>
+  <button class="cx" onclick="document.getElementById('install-banner').style.display='none'">✕</button>
+</div>
+
+<div id="topnav">
+  <div class="nav-brand">✦ Solo Service Pro</div>
+  <button class="nav-btn active" onclick="show('dashboard',this)">Dashboard</button>
+  <button class="nav-btn" onclick="show('appointments',this)">Appointments</button>
+  <button class="nav-btn" onclick="show('reminders',this)">Reminders</button>
+  <button class="nav-btn" onclick="show('clients',this)">Clients</button>
+  <button class="nav-btn" onclick="show('expenses',this)">Expenses</button>
+  <button class="nav-btn" onclick="show('invoices',this)">Invoices</button>
+  <button class="nav-btn" onclick="show('reports',this)">Reports</button>
+  <button class="nav-btn" onclick="show('taxes',this)">Taxes</button>
+  <button class="nav-btn" onclick="show('balance',this)">Balance</button>
+</div>
+
+<div id="content">
+<main>
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="section-row"><h2>Dashboard</h2><span id="dash-date" style="font-size:12px;color:var(--gray)"></span></div>
+  <div class="g2" id="ds-top" style="margin-bottom:10px"></div>
+  <div class="g2" id="ds-bot" style="margin-bottom:14px"></div>
+  <div class="card" id="dash-upcoming-card" style="display:none">
+    <div class="card-title" style="margin-bottom:10px">⏰ Upcoming — needs reminder</div>
+    <div id="dash-upcoming"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Income this month</div>
+    <div id="dash-chart" class="mini-chart"></div>
+    <div id="dash-chart-labels" style="display:flex;gap:3px;margin-top:2px"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="margin-bottom:10px">Recent appointments</div>
+    <div id="dash-recent"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="margin-bottom:12px">Quick add</div>
+    <label>Client</label><input id="q-client" placeholder="Jane Smith" autocomplete="name">
+    <label>Service</label><input id="q-service" placeholder="Haircut, session...">
+    <div class="frow">
+      <div><label>Date & time</label><input id="q-date" type="datetime-local"></div>
+      <div><label>Amount ($)</label><input id="q-amount" type="number" inputmode="decimal" placeholder="0.00" min="0" step="0.01"></div>
+    </div>
+    <div class="frow">
+      <div><label>Tip ($)</label><input id="q-tip" type="number" inputmode="decimal" placeholder="0.00" min="0" step="0.01">
+        <div class="tip-pill" id="q-tip-pills">
+          <span class="tip-opt" onclick="setQTip(this,10)">$10</span>
+          <span class="tip-opt" onclick="setQTip(this,15)">$15</span>
+          <span class="tip-opt" onclick="setQTip(this,20)">$20</span>
+        </div>
+      </div>
+      <div><label>Payment</label>
+        <select id="q-method"><option>Cash</option><option>Venmo</option><option>Zelle</option><option>Card</option><option>Check</option><option>Other</option></select>
+      </div>
+    </div>
+    <div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="quickAdd()">+ Add appointment</button></div>
+  </div>
+</div>
+
+<!-- APPOINTMENTS -->
+<div class="page" id="page-appointments">
+  <div class="section-row">
+    <h2>Appointments</h2>
+    <div class="export-row">
+      <button class="btn btn-export btn-sm" onclick="exportCSV('appointments')">↓ CSV</button>
+      <button class="btn btn-primary btn-sm" onclick="openApptModal()">+ New</button>
+    </div>
+  </div>
+  <div class="filter-scroll">
+    <button class="filter-btn active" onclick="filterAppts('all',this)">All</button>
+    <button class="filter-btn" onclick="filterAppts('upcoming',this)">Upcoming</button>
+    <button class="filter-btn" onclick="filterAppts('paid',this)">Paid</button>
+    <button class="filter-btn" onclick="filterAppts('pending',this)">Pending</button>
+    <button class="filter-btn" onclick="filterAppts('no-show',this)">No-show</button>
+  </div>
+  <div id="appt-list"></div>
+</div>
+
+<!-- REMINDERS -->
+<div class="page" id="page-reminders">
+  <div class="section-row"><h2>Reminders</h2><button class="btn btn-secondary btn-sm" onclick="openReminderSettings()">⚙️ Templates</button></div>
+
+  <!-- reminder schedule -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:10px">Reminder schedule</div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:12px">Send reminders to clients before their appointment. Tap "Remind" to send via SMS or email.</div>
+    <div class="frow">
+      <div>
+        <label>First reminder</label>
+        <select id="rem-first">
+          <option value="48">48 hours before</option>
+          <option value="24" selected>24 hours before</option>
+          <option value="12">12 hours before</option>
+          <option value="2">2 hours before</option>
+        </select>
+      </div>
+      <div>
+        <label>Second reminder</label>
+        <select id="rem-second">
+          <option value="none">None</option>
+          <option value="2" selected>2 hours before</option>
+          <option value="1">1 hour before</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- upcoming needing reminders -->
+  <div id="rem-upcoming-list"></div>
+
+  <!-- past sent reminders log -->
+  <div style="margin-top:4px">
+    <div class="upcoming-header">Reminder history</div>
+    <div id="rem-history"></div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div class="page" id="page-clients">
+  <div class="section-row">
+    <h2>Clients</h2>
+    <div class="export-row">
+      <button class="btn btn-export btn-sm" onclick="exportCSV('clients')">↓ CSV</button>
+      <button class="btn btn-primary btn-sm" onclick="openClientModal()">+ New</button>
+    </div>
+  </div>
+  <div id="client-list"></div>
+</div>
+
+<!-- EXPENSES -->
+<div class="page" id="page-expenses">
+  <div class="section-row">
+    <h2>Expenses</h2>
+    <div class="export-row">
+      <button class="btn btn-export btn-sm" onclick="exportCSV('expenses')">↓ CSV</button>
+      <button class="btn btn-primary btn-sm" onclick="openExpenseModal()">+ New</button>
+    </div>
+  </div>
+  <div class="g2" id="expense-stats" style="margin-bottom:14px"></div>
+  <div id="expense-list"></div>
+</div>
+
+<!-- INVOICES -->
+<div class="page" id="page-invoices">
+  <div class="section-row">
+    <h2>Invoices</h2>
+    <div class="export-row">
+      <button class="btn btn-export btn-sm" onclick="exportCSV('invoices')">↓ CSV</button>
+      <button class="btn btn-primary btn-sm" onclick="openInvoiceModal()">+ New</button>
+    </div>
+  </div>
+  <div class="filter-scroll">
+    <button class="filter-btn active" onclick="filterInv('all',this)">All</button>
+    <button class="filter-btn" onclick="filterInv('draft',this)">Draft</button>
+    <button class="filter-btn" onclick="filterInv('sent',this)">Sent</button>
+    <button class="filter-btn" onclick="filterInv('paid',this)">Paid</button>
+    <button class="filter-btn" onclick="filterInv('overdue',this)">Overdue</button>
+  </div>
+  <div id="invoice-list"></div>
+</div>
+
+<!-- REPORTS -->
+<div class="page" id="page-reports">
+  <div class="section-row">
+    <h2>Reports</h2>
+    <div class="export-row">
+      <select id="report-month" onchange="renderReports()" style="font-size:14px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--bdr)"></select>
+      <button class="btn btn-export btn-sm" onclick="exportCSV('report')">↓ CSV</button>
+    </div>
+  </div>
+  <div class="g2" id="report-stats" style="margin-bottom:14px"></div>
+  <div class="card"><div class="card-title" style="margin-bottom:10px">Profit & loss</div><div id="pl-table"></div></div>
+  <div class="card"><div class="card-title" style="margin-bottom:10px">Expenses by category</div><div id="exp-breakdown"></div></div>
+  <div class="card"><div class="card-title" style="margin-bottom:8px">Income + tips by week</div>
+    <div class="mini-chart" id="weekly-chart" style="height:72px"></div>
+    <div id="weekly-labels" style="display:flex;gap:3px;margin-top:2px"></div>
+  </div>
+</div>
+
+<!-- TAXES -->
+<div class="page" id="page-taxes">
+  <div class="section-row"><h2>Tax estimator</h2></div>
+  <div class="quarters" id="quarter-tabs"></div>
+  <div id="tax-content"></div>
+</div>
+
+<!-- BALANCE SHEET -->
+<div class="page" id="page-balance">
+  <div class="section-row">
+    <h2>Balance sheet</h2>
+    <div class="export-row">
+      <select id="bs-year" onchange="renderBalance()" style="font-size:14px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--bdr)"></select>
+      <button class="btn btn-export btn-sm" onclick="exportCSV('balance')">↓ CSV</button>
+    </div>
+  </div>
+  <div class="g3" id="bs-summary" style="margin-bottom:14px"></div>
+  <div class="card"><div style="font-size:12px;font-weight:700;color:var(--g);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">Assets</div><div id="bs-assets"></div><div id="bs-assets-total" class="pl" style="font-weight:700;margin-top:4px"></div></div>
+  <div class="card"><div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">Liabilities</div><div id="bs-liabilities"></div><div id="bs-liab-total" class="pl" style="font-weight:700;margin-top:4px"></div></div>
+  <div class="card"><div style="font-size:12px;font-weight:700;color:var(--pk);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">Owner's equity</div><div id="bs-equity"></div><div id="bs-equity-total" class="pl" style="font-weight:700;margin-top:4px"></div></div>
+  <div class="card" style="background:var(--bl);border-color:#bfdbfe"><div style="font-size:12px;font-weight:600;color:#1e40af;margin-bottom:6px">Financial insight</div><div id="bs-insight" style="font-size:13px;color:#1e3a8a;line-height:1.7"></div></div>
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:var(--gray);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">Add item</div>
+    <label>Category</label>
+    <select id="bs-cat">
+      <optgroup label="Assets"><option value="asset:cash">Cash on hand</option><option value="asset:bank">Bank account</option><option value="asset:equipment">Equipment / tools</option><option value="asset:supplies">Inventory / supplies</option><option value="asset:other">Other asset</option></optgroup>
+      <optgroup label="Liabilities"><option value="liability:credit">Credit card balance</option><option value="liability:loan">Loan / financing</option><option value="liability:tax">Taxes owed</option><option value="liability:other">Other liability</option></optgroup>
+    </select>
+    <label>Description</label><input id="bs-desc" placeholder="e.g. Chase checking, styling chair...">
+    <label>Amount ($)</label><input id="bs-amt" type="number" inputmode="decimal" placeholder="0.00" min="0" step="0.01">
+    <button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="addBsItem()">Add item</button>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- BOTTOM NAV -->
+<div id="bottomnav">
+  <button class="bnav-btn active" onclick="show('dashboard',this)" data-page="dashboard">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Home
+  </button>
+  <button class="bnav-btn" onclick="show('appointments',this)" data-page="appointments">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Appts
+  </button>
+  <button class="bnav-btn" onclick="show('reminders',this)" data-page="reminders">
+    <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>Remind
+  </button>
+  <button class="bnav-btn" onclick="show('expenses',this)" data-page="expenses">
+    <svg viewBox="0 0 24 24"><path d="M12 3v18M7 7h9a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h10"/></svg>Expenses
+  </button>
+  <button class="bnav-btn" onclick="showMore()" data-page="more">
+    <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>More
+  </button>
+</div>
+
+<!-- MORE MENU -->
+<div id="more-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;align-items:flex-end">
+  <div style="background:#fff;border-radius:20px 20px 0 0;padding:20px;width:100%;padding-bottom:calc(20px + var(--safe-b))">
+    <div style="font-size:13px;font-weight:600;color:var(--gray);margin-bottom:14px;text-align:center">More</div>
+    <div class="g2" style="gap:10px">
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="showFromMore('clients')">👤 Clients</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="showFromMore('invoices')">📄 Invoices</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="showFromMore('reports')">📊 Reports</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="showFromMore('taxes')">🏦 Taxes</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="showFromMore('balance')">⚖️ Balance</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px" onclick="closeMore();openBizSettings()">🏢 Biz info</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px;grid-column:span 2" onclick="closeMore();openPaySettings()">⚙️ Payment handles</button>
+      <button class="btn btn-secondary" style="width:100%;font-size:14px;grid-column:span 2;background:#fef3c7;border-color:#fde68a;color:#92400e" onclick="closeMore();openDataManager()">🛟 Data & backup</button>
+    </div>
+    <button class="btn btn-secondary" style="width:100%;margin-top:12px" onclick="closeMore()">Cancel</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;justify-content:center">
+  <div id="modal-box" style="background:#fff;border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:92vh;overflow-y:auto;padding-bottom:calc(20px + var(--safe-b))">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const now=new Date();
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const EXPENSE_CATS=['Supplies & products','Rent / booth fee','Marketing','Equipment','Education','Software','Transportation','Meals','Insurance','Other'];
+const QUARTERS=[{label:'Q1',dates:'Jan–Mar',deadline:'Apr 15',months:[0,1,2]},{label:'Q2',dates:'Apr–Jun',deadline:'Jun 16',months:[3,4,5]},{label:'Q3',dates:'Jul–Sep',deadline:'Sep 15',months:[6,7,8]},{label:'Q4',dates:'Oct–Dec',deadline:'Jan 15',months:[9,10,11]}];
+const SAVE_KEY='ssp_state_v1';
+function saveState(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Save failed',e);}}
+function loadState(){try{const s=localStorage.getItem(SAVE_KEY);if(s){const parsed=JSON.parse(s);Object.assign(state,parsed);}}catch(e){console.warn('Load failed',e);}}
+function autoSave(){saveState();}
+
+let state={appointments:[],clients:[],expenses:[],invoices:[],bsItems:[],reminderLog:[],invoiceCounter:1000,selectedQuarter:0};
+loadState();
+
+// init selectors
+const rmSel=document.getElementById('report-month');
+for(let i=0;i<12;i++){const o=document.createElement('option');o.value=i;o.textContent=MONTHS[i]+' '+now.getFullYear();if(i===now.getMonth())o.selected=true;rmSel.appendChild(o);}
+const bySel=document.getElementById('bs-year');
+for(let i=now.getFullYear();i>=now.getFullYear()-3;i--){const o=document.createElement('option');o.value=i;o.textContent=i;bySel.appendChild(o);}
+
+// default quick-add date to now
+const qd=document.getElementById('q-date');
+const nd=new Date();nd.setMinutes(nd.getMinutes()-nd.getTimezoneOffset());
+qd.value=nd.toISOString().slice(0,16);
+
+document.getElementById('dash-date').textContent=now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+setTimeout(()=>{if(/iPhone|iPad|Android/i.test(navigator.userAgent)&&!window.matchMedia('(display-mode:standalone)').matches)document.getElementById('install-banner').style.display='flex';},1200);
+
+// ---- NAV ----
+function show(page,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn,.bnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  if(btn)btn.classList.add('active');
+  document.getElementById('content').scrollTo(0,0);
+  ({dashboard:renderDashboard,appointments:()=>renderAppts('all'),clients:renderClients,expenses:renderExpenses,invoices:()=>renderInvoices('all'),reports:renderReports,taxes:renderTaxes,balance:renderBalance,reminders:renderReminders})[page]?.();
+}
+function showMore(){document.getElementById('more-modal').style.display='flex';}
+function closeMore(){document.getElementById('more-modal').style.display='none';}
+function showFromMore(p){closeMore();document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.bnav-btn[data-page="more"]').classList.add('active');show(p,null);}
+
+// ---- MODAL ----
+function openModal(html){document.getElementById('modal-content').innerHTML=html;document.getElementById('modal-overlay').style.display='flex';}
+function closeModal(){document.getElementById('modal-overlay').style.display='none';}
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+document.getElementById('more-modal').addEventListener('click',e=>{if(e.target===document.getElementById('more-modal'))closeMore();});
+
+// ---- HELPERS ----
+function fmt(n){return'$'+parseFloat(n||0).toFixed(2);}
+function v(id){return document.getElementById(id)?.value||'';}
+function statCard(label,val,color){return`<div class="card" style="margin-bottom:0"><div class="card-title">${label}</div><div class="card-val" style="color:${color};font-size:20px">${val}</div></div>`;}
+function addAppt(a){a.tip=parseFloat(a.tip||0);state.appointments.push(a);if(!state.clients.find(c=>c.name.toLowerCase()===a.client.toLowerCase()))state.clients.push({name:a.client,phone:'',email:'',notes:'',since:a.date});autoSave();}
+function toLocalDT(str){if(!str)return null;return new Date(str);}
+function fmtDT(str){if(!str)return'';const d=new Date(str);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+(str.includes('T')?' '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'');}
+function hoursUntil(dtStr){if(!dtStr)return null;return(new Date(dtStr)-now)/36e5;}
+
+// ---- TIP ----
+function setQTip(el,v2){document.querySelectorAll('#q-tip-pills .tip-opt').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');document.getElementById('q-tip').value=v2;}
+function buildTipPills(iid,pid,cur){return`<div class="tip-pill" id="${pid}">${[10,15,20].map(v2=>`<span class="tip-opt${parseFloat(cur)===v2?' sel':''}" onclick="setTipPill('${iid}','${pid}',${v2})">\$${v2}</span>`).join('')}<span class="tip-opt" onclick="setTipPill('${iid}','${pid}','custom')">Other</span></div>`;}
+function setTipPill(iid,pid,v2){document.querySelectorAll('#'+pid+' .tip-opt').forEach(x=>x.classList.remove('sel'));event.target.classList.add('sel');if(v2!=='custom')document.getElementById(iid).value=v2;else{document.getElementById(iid).value='';document.getElementById(iid).focus();}}
+
+// ---- DASHBOARD ----
+function renderDashboard(){
+  const m=now.getMonth(),y=now.getFullYear();
+  const mA=state.appointments.filter(a=>{const d=new Date(a.date);return d.getMonth()===m&&d.getFullYear()===y;});
+  const inc=mA.reduce((s,a)=>s+parseFloat(a.amount||0),0);
+  const tips=mA.reduce((s,a)=>s+parseFloat(a.tip||0),0);
+  const mE=state.expenses.filter(e=>{const d=new Date(e.date);return d.getMonth()===m&&d.getFullYear()===y;});
+  const exp=mE.reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  const profit=inc+tips-exp;
+  const unp=state.invoices.filter(i=>i.status==='sent'||i.status==='overdue').reduce((s,i)=>s+i.total,0);
+  document.getElementById('ds-top').innerHTML=statCard('Service income',fmt(inc),'var(--g)')+statCard('Tips',fmt(tips),'var(--cy)');
+  document.getElementById('ds-bot').innerHTML=statCard('Expenses',fmt(exp),'var(--r)')+statCard('Net profit',fmt(profit),profit>=0?'var(--g)':'var(--r)');
+
+  // upcoming needing reminder on dashboard
+  const upcoming=getUpcomingNeedingReminder();
+  const duc=document.getElementById('dash-upcoming-card');
+  const dul=document.getElementById('dash-upcoming');
+  if(upcoming.length){
+    duc.style.display='block';
+    dul.innerHTML=upcoming.slice(0,3).map(a=>`<div class="pl"><span>${a.client}<br><span style="font-size:11px;color:var(--gray)">${fmtDT(a.date)} · ${a.service||''}</span></span><div style="display:flex;gap:6px;flex-shrink:0"><button class="btn btn-sms btn-xs" onclick="sendReminderSMS(${state.appointments.indexOf(a)})">SMS</button><button class="btn btn-email btn-xs" onclick="sendReminderEmail(${state.appointments.indexOf(a)})">Email</button></div></div>`).join('');
+  } else duc.style.display='none';
+
+  const weeks=[0,0,0,0,0];
+  mA.forEach(a=>{const d=new Date(a.date);weeks[Math.min(4,Math.floor((d.getDate()-1)/7))]+=parseFloat(a.amount||0)+parseFloat(a.tip||0);});
+  const wmax=Math.max(...weeks,1);
+  document.getElementById('dash-chart').innerHTML=weeks.map((val,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div class="bar" style="height:${Math.max(4,Math.round(val/wmax*48))}px;background:var(--pk);width:100%"></div></div>`).join('');
+  document.getElementById('dash-chart-labels').innerHTML=weeks.map((_,i)=>`<div style="flex:1;font-size:9px;color:var(--gray);text-align:center">Wk${i+1}</div>`).join('');
+  const last=[...state.appointments].slice(-5).reverse();
+  document.getElementById('dash-recent').innerHTML=last.length?last.map(a=>`<div class="pl"><span>${a.client}<br><span style="font-size:11px;color:var(--gray)">${a.service||''}</span></span><span style="text-align:right">${parseFloat(a.tip||0)>0?`<span style="color:var(--cy);font-size:11px">+${fmt(a.tip)} tip</span><br>`:''}<span style="color:var(--g);font-weight:600">${fmt(parseFloat(a.amount||0)+parseFloat(a.tip||0))}</span></span></div>`).join(''):'<div class="empty">No appointments yet</div>';
+}
+
+function quickAdd(){
+  const client=v('q-client').trim(),amount=v('q-amount');
+  if(!client||!amount){alert('Client name and amount required.');return;}
+  addAppt({date:v('q-date')||new Date().toISOString().split('T')[0],client,service:v('q-service').trim(),amount,tip:v('q-tip')||'0',method:v('q-method'),status:'pending',reminderSent:false});
+  ['q-client','q-service','q-amount','q-tip'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('#q-tip-pills .tip-opt').forEach(x=>x.classList.remove('sel'));
+  const nd2=new Date();nd2.setMinutes(nd2.getMinutes()-nd2.getTimezoneOffset());document.getElementById('q-date').value=nd2.toISOString().slice(0,16);
+  renderDashboard();
+}
+
+// ---- APPOINTMENTS ----
+function openApptModal(idx){
+  const nd2=new Date();nd2.setMinutes(nd2.getTimezoneOffset()*-1);
+  const a=idx!=null?state.appointments[idx]:{date:nd2.toISOString().slice(0,16),client:'',service:'',amount:'',tip:'',method:'Cash',status:'pending',reminderSent:false};
+  const dtVal=a.date&&a.date.includes('T')?a.date:a.date?a.date+'T09:00':'';
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><strong style="font-size:17px">${idx!=null?'Edit':'New'} appointment</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <label>Date & time</label><input id="m-date" type="datetime-local" value="${dtVal}">
+    <label>Client</label><input id="m-client" placeholder="Jane Smith" value="${a.client}" autocomplete="name">
+    <label>Service</label><input id="m-service" placeholder="Haircut, training..." value="${a.service||''}">
+    <div class="frow">
+      <div><label>Amount ($)</label><input id="m-amount" type="number" inputmode="decimal" placeholder="0.00" value="${a.amount||''}"></div>
+      <div><label>Tip ($)</label><input id="m-tip" type="number" inputmode="decimal" placeholder="0.00" value="${a.tip||''}">
+        ${buildTipPills('m-tip','m-tip-pills',a.tip)}
+      </div>
+    </div>
+    <label>Method</label><select id="m-method">${['Cash','Venmo','Zelle','Card','Check','Other'].map(x=>`<option${x===a.method?' selected':''}>${x}</option>`).join('')}</select>
+    <label>Status</label><select id="m-status">${['pending','paid','no-show'].map(x=>`<option${x===a.status?' selected':''}>${x}</option>`).join('')}</select>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn btn-primary" style="flex:1" onclick="saveAppt(${idx!=null?idx:'null'})">Save</button>
+      ${idx!=null?`<button class="btn btn-danger" style="flex:1" onclick="delAppt(${idx})">Delete</button>`:''}
+    </div>
+    ${idx!=null?`<div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-sms btn-sm" style="flex:1" onclick="closeModal();sendReminderSMS(${idx})">💬 Send SMS reminder</button><button class="btn btn-email btn-sm" style="flex:1" onclick="closeModal();sendReminderEmail(${idx})">📧 Send email reminder</button></div>`:''}
+  `);
+}
+function saveAppt(idx){
+  const a={date:v('m-date')||new Date().toISOString().split('T')[0],client:v('m-client').trim(),service:v('m-service').trim(),amount:v('m-amount'),tip:v('m-tip')||'0',method:v('m-method'),status:v('m-status'),reminderSent:idx!=null?state.appointments[idx].reminderSent:false};
+  if(!a.client||!a.amount){alert('Client and amount required.');return;}
+  if(idx!=null)state.appointments[idx]=a;else addAppt(a);
+  autoSave();closeModal();renderAppts(document.querySelector('#page-appointments .filter-btn.active')?.dataset?.filter||'all');
+}
+function delAppt(i){if(confirm('Delete?')){state.appointments.splice(i,1);autoSave();closeModal();renderAppts('all');}}
+
+function filterAppts(f,btn){document.querySelectorAll('#page-appointments .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');btn.dataset.filter=f;renderAppts(f);}
+function renderAppts(filter){
+  const el=document.getElementById('appt-list');
+  let list=filter==='upcoming'
+    ?[...state.appointments].filter(a=>new Date(a.date)>now).sort((a,b)=>new Date(a.date)-new Date(b.date))
+    :filter==='all'?[...state.appointments].reverse()
+    :state.appointments.filter(a=>a.status===filter).reverse();
+  if(!list.length){el.innerHTML='<div class="empty card">No appointments found</div>';return;}
+  const bmap={paid:'bg',pending:'ba','no-show':'br'};
+  el.innerHTML=list.map(a=>{
+    const i=state.appointments.indexOf(a);
+    const tip=parseFloat(a.tip||0);
+    const hrs=hoursUntil(a.date);
+    const reminderChip=hrs!==null&&hrs>0&&hrs<48?`<span class="reminder-chip chip-warn">⏰ ${Math.round(hrs)}h away</span>`:a.reminderSent?`<span class="reminder-chip chip-ok">✓ Reminded</span>`:'';
+    return`<div class="rec-card">
+      <div class="rec-row">
+        <div><div class="rec-title">${a.client}</div><div class="rec-sub">${fmtDT(a.date)} · ${a.service||'—'} · ${a.method}</div>${reminderChip}</div>
+        <div style="text-align:right"><div style="font-size:16px;font-weight:700;color:var(--g)">${fmt(parseFloat(a.amount||0)+tip)}</div>${tip>0?`<div style="font-size:11px;color:var(--cy)">+${fmt(tip)} tip</div>`:''}
+        <span class="badge ${bmap[a.status]||'ba'}">${a.status}</span></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="openApptModal(${i})">Edit</button>
+        <button class="btn btn-sms btn-sm" onclick="sendReminderSMS(${i})">💬 SMS</button>
+        <button class="btn btn-email btn-sm" onclick="sendReminderEmail(${i})">📧 Email</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ---- REMINDERS ----
+function getReminderTemplate(){
+  const t=localStorage.getItem('ssp_rem_template');
+  return t||'Hi [name]! Just a reminder about your [service] appointment on [datetime]. Please reply YES to confirm or call/text to reschedule. See you soon! 🙏';
+}
+function buildReminderMsg(a){
+  return getReminderTemplate()
+    .replace('[name]',a.client)
+    .replace('[service]',a.service||'appointment')
+    .replace('[datetime]',fmtDT(a.date))
+    .replace('[amount]',fmt(parseFloat(a.amount||0)+parseFloat(a.tip||0)));
+}
+function getUpcomingNeedingReminder(){
+  const hrs1=parseInt(v('rem-first')||'24');
+  return state.appointments.filter(a=>{
+    const hrs=hoursUntil(a.date);
+    return hrs!==null&&hrs>0&&hrs<=hrs1&&!a.reminderSent;
+  }).sort((a,b)=>new Date(a.date)-new Date(b.date));
+}
+function sendReminderSMS(idx){
+  const a=state.appointments[idx];
+  const msg=encodeURIComponent(buildReminderMsg(a));
+  const c=state.clients.find(x=>x.name.toLowerCase()===a.client.toLowerCase());
+  const phone=c&&c.phone?c.phone.replace(/\D/g,''):'';
+  state.appointments[idx].reminderSent=true;
+  state.reminderLog.unshift({client:a.client,service:a.service,date:a.date,via:'SMS',sent:new Date().toISOString()});
+  window.open(`sms:${phone}?body=${msg}`,'_self');
+  renderReminders();renderDashboard();
+}
+function sendReminderEmail(idx){
+  const a=state.appointments[idx];
+  const msg=encodeURIComponent(buildReminderMsg(a));
+  const subj=encodeURIComponent(`Reminder: Your ${a.service||'appointment'} on ${fmtDT(a.date)}`);
+  const c=state.clients.find(x=>x.name.toLowerCase()===a.client.toLowerCase());
+  const email=c&&c.email?c.email:'';
+  state.appointments[idx].reminderSent=true;
+  state.reminderLog.unshift({client:a.client,service:a.service,date:a.date,via:'Email',sent:new Date().toISOString()});
+  window.open(`mailto:${email}?subject=${subj}&body=${msg}`,'_self');
+  renderReminders();renderDashboard();
+}
+function openReminderSettings(){
+  const tpl=getReminderTemplate();
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong style="font-size:17px">Reminder templates</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:14px">Use <strong>[name]</strong>, <strong>[service]</strong>, <strong>[datetime]</strong>, <strong>[amount]</strong> as placeholders.</div>
+    <label>Message template</label>
+    <textarea id="rem-tpl" rows="6">${tpl}</textarea>
+    <div style="background:var(--bl);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px;color:#1e3a8a">
+      <strong>Preview:</strong><br><span id="rem-preview"></span>
+    </div>
+    <button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="saveReminderTemplate()">Save template</button>
+  `);
+  updatePreview();
+  document.getElementById('rem-tpl').addEventListener('input',updatePreview);
+}
+function updatePreview(){
+  const tpl=document.getElementById('rem-tpl')?.value||'';
+  const preview=tpl.replace('[name]','Maria').replace('[service]','Haircut').replace('[datetime]','Mon Apr 28 at 10:00 AM').replace('[amount]','$65.00');
+  const el=document.getElementById('rem-preview');
+  if(el) el.textContent=preview;
+}
+function saveReminderTemplate(){
+  localStorage.setItem('ssp_rem_template',v('rem-tpl'));
+  alert('Template saved!');closeModal();
+}
+function renderReminders(){
+  const hrs1=parseInt(v('rem-first')||'24');
+  const hrs2=v('rem-second')||'2';
+  const upcoming=getUpcomingNeedingReminder();
+  const allUpcoming=state.appointments.filter(a=>new Date(a.date)>now).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const el=document.getElementById('rem-upcoming-list');
+
+  if(!allUpcoming.length){el.innerHTML='<div class="empty card">No upcoming appointments. Add appointments with a date & time to send reminders.</div>';
+  }else{
+    el.innerHTML=`<div class="upcoming-header">Upcoming appointments (${allUpcoming.length})</div>`+
+    allUpcoming.map(a=>{
+      const i=state.appointments.indexOf(a);
+      const hrs=hoursUntil(a.date);
+      let chip='';
+      if(hrs<=hrs1&&!a.reminderSent) chip=`<span class="reminder-chip chip-warn">⏰ Reminder due</span>`;
+      else if(a.reminderSent) chip=`<span class="reminder-chip chip-ok">✓ Reminder sent</span>`;
+      else chip=`<span class="reminder-chip" style="background:#f3f4f6;color:var(--gray)">${Math.round(hrs)}h away</span>`;
+      return`<div class="rec-card">
+        <div class="rec-row">
+          <div><div class="rec-title">${a.client}</div>
+            <div class="rec-sub">${fmtDT(a.date)} · ${a.service||'—'}</div>
+            ${chip}
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--gray)">${a.method}</div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn btn-sms btn-sm" style="flex:1" onclick="sendReminderSMS(${i})">💬 SMS reminder</button>
+          <button class="btn btn-email btn-sm" style="flex:1" onclick="sendReminderEmail(${i})">📧 Email reminder</button>
+        </div>
+        <div style="margin-top:8px">
+          <button class="btn btn-secondary btn-sm" style="width:100%;font-size:12px" onclick="previewReminder(${i})">👁 Preview message</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // history
+  const hist=document.getElementById('rem-history');
+  if(!state.reminderLog.length){hist.innerHTML='<div style="font-size:13px;color:var(--gray);padding:12px 0">No reminders sent yet.</div>';return;}
+  hist.innerHTML=state.reminderLog.slice(0,10).map(r=>`<div class="pl"><span>${r.client}<br><span style="font-size:11px;color:var(--gray)">${r.service||''} · ${fmtDT(r.date)}</span></span><span style="text-align:right"><span class="badge ${r.via==='SMS'?'bg':'bb'}">${r.via}</span><br><span style="font-size:11px;color:var(--gray)">${new Date(r.sent).toLocaleDateString()}</span></span></div>`).join('');
+}
+function previewReminder(idx){
+  const a=state.appointments[idx];
+  const msg=buildReminderMsg(a);
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><strong style="font-size:17px">Preview reminder</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:14px;font-size:14px;line-height:1.7;color:#14532d;margin-bottom:16px;white-space:pre-wrap">${msg}</div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-sms" style="flex:1" onclick="closeModal();sendReminderSMS(${idx})">💬 Send SMS</button>
+      <button class="btn btn-email" style="flex:1" onclick="closeModal();sendReminderEmail(${idx})">📧 Send email</button>
+    </div>
+  `);
+}
+
+// ---- CLIENTS ----
+function openClientModal(name){
+  const c=name?state.clients.find(x=>x.name===name)||{}:{};
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><strong style="font-size:17px">${name?'Edit client':'New client'}</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <label>Name</label><input id="c-name" value="${c.name||''}" autocomplete="name">
+    <label>Phone</label><input id="c-phone" type="tel" value="${c.phone||''}" placeholder="(208) 555-0100" autocomplete="tel">
+    <label>Email</label><input id="c-email" type="email" value="${c.email||''}" placeholder="jane@email.com" autocomplete="email">
+    <label>Notes</label><textarea id="c-notes" rows="2">${c.notes||''}</textarea>
+    <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="saveClient('${name||''}')">Save</button>`);
+}
+function saveClient(old){
+  const nm=v('c-name').trim();if(!nm){alert('Name required.');return;}
+  const obj={name:nm,phone:v('c-phone'),email:v('c-email'),notes:v('c-notes'),since:new Date().toISOString().split('T')[0]};
+  const idx=old?state.clients.findIndex(x=>x.name===old):-1;
+  if(idx>=0)state.clients[idx]=obj;else state.clients.push(obj);
+  closeModal();renderClients();
+}
+function renderClients(){
+  const el=document.getElementById('client-list');
+  if(!state.clients.length){el.innerHTML='<div class="empty card">No clients yet — added automatically from appointments.</div>';return;}
+  el.innerHTML=state.clients.map(c=>{
+    const ap=state.appointments.filter(a=>a.client.toLowerCase()===c.name.toLowerCase());
+    const svc=ap.reduce((s,a)=>s+parseFloat(a.amount||0),0);
+    const tips=ap.reduce((s,a)=>s+parseFloat(a.tip||0),0);
+    const upcoming=ap.filter(a=>new Date(a.date)>now).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
+    return`<div class="client-card">
+      <div class="rec-row">
+        <div><div class="rec-title">${c.name}</div>
+          <div class="rec-sub">${ap.length} visits${c.phone?' · '+c.phone:''}</div>
+          <div style="font-size:12px;margin-top:3px">Svc: <strong>${fmt(svc)}</strong> · Tips: <strong style="color:var(--cy)">${fmt(tips)}</strong> · Total: <strong>${fmt(svc+tips)}</strong></div>
+          ${upcoming?`<div style="font-size:12px;margin-top:3px;color:var(--pk)">Next: ${fmtDT(upcoming.date)}</div>`:''}
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="openClientModal('${c.name}')">Edit</button>
+      </div>${c.notes?`<div style="margin-top:8px;font-size:12px;color:var(--gray)">${c.notes}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ---- EXPENSES ----
+function openExpenseModal(i){
+  const e=i!=null?state.expenses[i]:{date:new Date().toISOString().split('T')[0],description:'',category:EXPENSE_CATS[0],amount:''};
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><strong style="font-size:17px">${i!=null?'Edit':'New'} expense</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <label>Date</label><input id="e-date" type="date" value="${e.date}">
+    <label>Description</label><input id="e-desc" value="${e.description}" placeholder="What did you buy?">
+    <label>Category</label><select id="e-cat">${EXPENSE_CATS.map(c=>`<option${c===e.category?' selected':''}>${c}</option>`).join('')}</select>
+    <label>Amount ($)</label><input id="e-amount" type="number" inputmode="decimal" value="${e.amount}" placeholder="0.00">
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn btn-primary" style="flex:1" onclick="saveExp(${i!=null?i:'null'})">Save</button>
+      ${i!=null?`<button class="btn btn-danger" style="flex:1" onclick="delExp(${i})">Delete</button>`:''}
+    </div>`);
+}
+function saveExp(i){
+  const e={date:v('e-date'),description:v('e-desc').trim(),category:v('e-cat'),amount:v('e-amount')};
+  if(!e.description||!e.amount){alert('Description and amount required.');return;}
+  if(i!=null)state.expenses[i]=e;else state.expenses.push(e);
+  closeModal();renderExpenses();
+}
+function delExp(i){if(confirm('Delete?')){state.expenses.splice(i,1);closeModal();renderExpenses();}}
+function renderExpenses(){
+  const m=now.getMonth(),y=now.getFullYear();
+  const mE=state.expenses.filter(e=>{const d=new Date(e.date);return d.getMonth()===m&&d.getFullYear()===y;});
+  const total=mE.reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  const cats={};mE.forEach(e=>{cats[e.category]=(cats[e.category]||0)+parseFloat(e.amount||0);});
+  const top=Object.entries(cats).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('expense-stats').innerHTML=statCard('This month',fmt(total),'var(--r)')+statCard('Top category',top?top[0].split(' ')[0]:'—','var(--am)');
+  const el=document.getElementById('expense-list');
+  if(!state.expenses.length){el.innerHTML='<div class="empty card">No expenses yet</div>';return;}
+  el.innerHTML=[...state.expenses].reverse().map((e,ri)=>{
+    const i=state.expenses.length-1-ri;
+    return`<div class="rec-card"><div class="rec-row"><div><div class="rec-title">${e.description}</div><div class="rec-sub">${e.date} · <span class="badge bp">${e.category}</span></div></div><div style="text-align:right"><div style="font-size:16px;font-weight:700;color:var(--r)">${fmt(e.amount)}</div><button class="btn btn-secondary btn-xs" style="margin-top:6px" onclick="openExpenseModal(${i})">Edit</button></div></div></div>`;
+  }).join('');
+}
+
+// ---- INVOICES ----
+function openInvoiceModal(){
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><strong style="font-size:17px">New invoice</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <label>Client</label><input id="i-client" list="cdl" placeholder="Jane Smith">
+    <datalist id="cdl">${state.clients.map(c=>`<option value="${c.name}">`).join('')}</datalist>
+    <label>Services (Description | $Amount, one per line)</label>
+    <textarea id="i-services" rows="4" placeholder="Haircut | $60&#10;Color | $120"></textarea>
+    <label>Due date</label><input id="i-due" type="date" value="${new Date(Date.now()+7*864e5).toISOString().split('T')[0]}">
+    <label>Notes</label><input id="i-notes" placeholder="Thank you for your business!">
+    <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="saveInvoice()">Create invoice</button>`);
+}
+function saveInvoice(){
+  const client=v('i-client').trim(),raw=v('i-services').trim();
+  if(!client||!raw){alert('Client and services required.');return;}
+  const lines=raw.split('\n').filter(Boolean).map(l=>{const[d,a]=l.split('|');return{desc:(d||'').trim(),amount:parseFloat((a||'0').replace(/[$,]/g,''))||0};});
+  state.invoices.push({id:'INV-'+(++state.invoiceCounter),client,lines,total:lines.reduce((s,l)=>s+l.amount,0),due:v('i-due'),notes:v('i-notes'),status:'draft',created:new Date().toISOString().split('T')[0]});
+  closeModal();renderInvoices('all');
+}
+function filterInv(f,btn){document.querySelectorAll('#page-invoices .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');btn.dataset.filter=f;renderInvoices(f);}
+function updateInvStatus(i,s){state.invoices[i].status=s;renderInvoices(document.querySelector('#page-invoices .filter-btn.active')?.dataset?.filter||'all');}
+function renderInvoices(filter){
+  const el=document.getElementById('invoice-list');
+  const list=filter==='all'?state.invoices:state.invoices.filter(i=>i.status===filter);
+  if(!list.length){el.innerHTML=`<div class="empty card">No ${filter==='all'?'':filter+' '}invoices</div>`;return;}
+  const bmap={draft:'bb',sent:'ba',paid:'bg',overdue:'br'};
+  el.innerHTML=list.map(inv=>{
+    const i=state.invoices.indexOf(inv);
+    return`<div class="rec-card"><div class="rec-row">
+      <div><div class="rec-title">${inv.client}</div><div class="rec-sub">${inv.id} · Due ${inv.due}</div><div style="font-size:12px;margin-top:2px">${inv.lines.map(l=>l.desc).join(', ')}</div></div>
+      <div style="text-align:right"><div style="font-size:18px;font-weight:700">${fmt(inv.total)}</div><span class="badge ${bmap[inv.status]}">${inv.status}</span></div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+      <select style="font-size:14px;padding:8px 10px;border-radius:8px;border:1.5px solid var(--bdr);flex:1;min-width:120px" onchange="updateInvStatus(${i},this.value)">
+        ${['draft','sent','paid','overdue'].map(s=>`<option${s===inv.status?' selected':''}>${s}</option>`).join('')}
+      </select>
+      <button class="btn btn-green btn-sm" style="flex:1;min-width:120px" onclick="requestPayment(${i})">💳 Request payment</button>
+    </div></div>`;
+  }).join('');
+}
+
+// ---- REQUEST PAYMENT ----
+function buildPayText(inv){
+  const cfg=JSON.parse(localStorage.getItem('ssp_pay_cfg')||'{}');
+  const methods=[];
+  if(cfg.zelle) methods.push(`Zelle: ${cfg.zelle}`);
+  if(cfg.venmo) methods.push(`Venmo: @${cfg.venmo}`);
+  if(cfg.cashapp) methods.push(`Cash App: $${cfg.cashapp}`);
+  if(cfg.paypal) methods.push(`PayPal: paypal.me/${cfg.paypal}`);
+  if(cfg.stripe) methods.push(`Card: ${cfg.stripe}`);
+  if(cfg.square) methods.push(`Card: ${cfg.square}`);
+  const lines=inv.lines.map(l=>`  ${l.desc} — $${l.amount.toFixed(2)}`).join('\n');
+  return`Hi ${inv.client}! Here is your invoice.\n\nInvoice: ${inv.id}\nDue: ${inv.due}\n\nServices:\n${lines}\n\nTotal: $${inv.total.toFixed(2)}\n\nPay via:\n${methods.length?methods.join('\n'):'(See payment methods)'}\n\n${inv.notes?inv.notes+'\n\n':''}Thank you! 🙏`;
+}
+function requestPayment(idx){
+  const inv=state.invoices[idx];
+  const amt=inv.total.toFixed(2);
+  const note=encodeURIComponent(`Invoice ${inv.id} - ${inv.lines.map(l=>l.desc).join(', ')}`);
+  const cfg=JSON.parse(localStorage.getItem('ssp_pay_cfg')||'{}');
+  const po=(bg,emoji,label,sub,href,isBtn)=>isBtn
+    ?`<button onclick="${href}" class="pay-option" style="background:${bg};color:#fff">${emoji?`<span style="font-size:22px;width:28px;text-align:center">${emoji}</span>`:''}<div><div>${label}</div><div style="font-size:12px;font-weight:400;opacity:.85">${sub}</div></div><span style="margin-left:auto">→</span></button>`
+    :`<a href="${href}" target="_blank" rel="noopener" class="pay-option" style="background:${bg};color:#fff">${emoji?`<span style="font-size:22px;width:28px;text-align:center">${emoji}</span>`:''}<div><div>${label}</div><div style="font-size:12px;font-weight:400;opacity:.85">${sub}</div></div><span style="margin-left:auto">→</span></a>`;
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong style="font-size:17px">Request payment</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:16px">${inv.client} · ${inv.id} · <strong>$${amt}</strong></div>
+    ${po('#6b21e8','💜','Zelle',cfg.zelle||'Tap to set up',`zelle://?action=send&recipient=${encodeURIComponent(cfg.zelle||'')}&amount=${amt}&memo=${note}`,false)}
+    ${po('#008CFF','✌️','Venmo',cfg.venmo?'@'+cfg.venmo:'Tap to set up',`venmo://paycharge?txn=pay&recipients=${encodeURIComponent(cfg.venmo||'')}&amount=${amt}&note=${note}`,false)}
+    ${po('#00C244','💵','Cash App',cfg.cashapp?'$'+cfg.cashapp:'Tap to set up',`cashme://${encodeURIComponent(cfg.cashapp||'')}?amount=${amt}`,false)}
+    ${po('#003087','🅿️','PayPal',cfg.paypal?'paypal.me/'+cfg.paypal:'Tap to set up',`https://www.paypal.com/paypalme/${encodeURIComponent(cfg.paypal||'')}/${amt}`,false)}
+    ${po('#635BFF','💳','Card via Stripe',cfg.stripe?'Payment link ready':'Tap to set up',cfg.stripe||'#',false)}
+    ${po('#222','⬛','Card via Square',cfg.square?'Payment link ready':'Tap to set up',cfg.square||'#',false)}
+    ${po('#374151','📋','Copy payment request','Paste into any app',`copyPayDetails(${idx})`,true)}
+    ${po('#16a34a','💬','Send via SMS','Opens Messages app',`closeModal();sendInvoiceSMS(${idx})`,true)}
+    ${po('#0891b2','📧','Send via Email','Opens Mail app',`closeModal();sendInvoiceEmail(${idx})`,true)}
+    ${po('#dc2626','📄','Save / Print as PDF','Print-ready invoice',`printInvoice(${idx})`,true)}
+    <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="openPaySettings()">⚙️ Set up payment handles</button>
+  `);
+}
+function copyPayDetails(idx){
+  const txt=buildPayText(state.invoices[idx]);
+  navigator.clipboard.writeText(txt).then(()=>alert('Copied! Paste into any app.')).catch(()=>alert(txt));
+}
+function sendInvoiceSMS(idx){
+  const inv=state.invoices[idx];
+  const c=state.clients.find(x=>x.name.toLowerCase()===inv.client.toLowerCase());
+  const phone=c&&c.phone?c.phone.replace(/\D/g,''):'';
+  window.open(`sms:${phone}?body=${encodeURIComponent(buildPayText(inv))}`,'_self');
+}
+function sendInvoiceEmail(idx){
+  const inv=state.invoices[idx];
+  const c=state.clients.find(x=>x.name.toLowerCase()===inv.client.toLowerCase());
+  window.open(`mailto:${c&&c.email?c.email:''}?subject=${encodeURIComponent('Invoice '+inv.id+' — $'+inv.total.toFixed(2)+' due '+inv.due)}&body=${encodeURIComponent(buildPayText(inv))}`,'_self');
+}
+function printInvoice(idx){
+  const inv=state.invoices[idx];
+  const cfg=JSON.parse(localStorage.getItem('ssp_pay_cfg')||'{}');
+  const biz=JSON.parse(localStorage.getItem('ssp_biz_cfg')||'{}');
+  const methods=[];
+  if(cfg.zelle)methods.push(`Zelle: ${cfg.zelle}`);if(cfg.venmo)methods.push(`Venmo: @${cfg.venmo}`);if(cfg.cashapp)methods.push(`Cash App: $${cfg.cashapp}`);if(cfg.paypal)methods.push(`PayPal: paypal.me/${cfg.paypal}`);if(cfg.stripe)methods.push(`Card: ${cfg.stripe}`);if(cfg.square)methods.push(`Card: ${cfg.square}`);
+  const lRows=inv.lines.map(l=>`<tr><td style="padding:10px 0;border-bottom:1px solid #eee">${l.desc}</td><td style="padding:10px 0;border-bottom:1px solid #eee;text-align:right;font-weight:600">$${l.amount.toFixed(2)}</td></tr>`).join('');
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ${inv.id}</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;padding:48px;max-width:680px;margin:0 auto}.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px}.biz-name{font-size:24px;font-weight:800;color:#7c3aed}.biz-info{font-size:13px;color:#6b7280;margin-top:4px;line-height:1.6}.inv-meta{text-align:right}.inv-id{font-size:22px;font-weight:700;color:#7c3aed}.inv-detail{font-size:13px;color:#6b7280;margin-top:4px;line-height:1.6}.bill-to{background:#f9f9fb;border-radius:10px;padding:16px 20px;margin-bottom:32px}.bill-label{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}.bill-name{font-size:17px;font-weight:600}table{width:100%;border-collapse:collapse;margin-bottom:24px}th{text-align:left;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;padding:0 0 10px;border-bottom:2px solid #7c3aed}.total-row{display:flex;justify-content:flex-end;margin-top:8px}.total-box{background:#7c3aed;color:#fff;border-radius:10px;padding:14px 24px;text-align:right}.tl{font-size:12px;opacity:.8;margin-bottom:2px}.ta{font-size:28px;font-weight:800}.pay-section{margin-top:36px;border-top:2px solid #f3f4f6;padding-top:24px}.pt{font-size:13px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}.pm{display:flex;flex-wrap:wrap;gap:8px}.pill{background:#f3f0ff;color:#7c3aed;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600}.notes{margin-top:24px;font-size:13px;color:#6b7280;font-style:italic}.footer{margin-top:40px;text-align:center;font-size:12px;color:#9ca3af}@media print{body{padding:24px}}</style></head><body>
+  <div class="header"><div><div class="biz-name">${biz.name||'Solo Service Pro'}</div><div class="biz-info">${[biz.phone,biz.email,biz.address].filter(Boolean).join('<br>')}</div></div><div class="inv-meta"><div class="inv-id">INVOICE</div><div class="inv-detail">#${inv.id}<br>Issued: ${inv.created}<br>Due: ${inv.due}</div></div></div>
+  <div class="bill-to"><div class="bill-label">Bill to</div><div class="bill-name">${inv.client}</div></div>
+  <table><thead><tr><th>Service</th><th style="text-align:right">Amount</th></tr></thead><tbody>${lRows}</tbody></table>
+  <div class="total-row"><div class="total-box"><div class="tl">Total due</div><div class="ta">$${inv.total.toFixed(2)}</div></div></div>
+  ${methods.length?`<div class="pay-section"><div class="pt">Pay via</div><div class="pm">${methods.map(m=>`<span class="pill">${m}</span>`).join('')}</div></div>`:''}
+  ${inv.notes?`<div class="notes">${inv.notes}</div>`:''}
+  <div class="footer">Generated by Solo Service Pro · Thank you for your business!</div>
+  <script>window.onload=()=>window.print()<\/script></body></html>`;
+  const w=window.open('','_blank');w.document.write(html);w.document.close();
+}
+
+// ---- SETTINGS ----
+function openBizSettings(){
+  const biz=JSON.parse(localStorage.getItem('ssp_biz_cfg')||'{}');
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong style="font-size:17px">Business info</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:14px">Appears on your printed invoices and PDFs.</div>
+    <label>Business / your name</label><input id="biz-name" placeholder="Glamour by Maria" value="${biz.name||''}">
+    <label>Phone</label><input id="biz-phone" type="tel" placeholder="(208) 555-0100" value="${biz.phone||''}">
+    <label>Email</label><input id="biz-email" type="email" placeholder="you@email.com" value="${biz.email||''}">
+    <label>Address (optional)</label><input id="biz-address" placeholder="123 Main St, Nampa ID" value="${biz.address||''}">
+    <button class="btn btn-primary" style="width:100%;margin-top:18px" onclick="saveBizSettings()">Save</button>`);
+}
+function saveBizSettings(){localStorage.setItem('ssp_biz_cfg',JSON.stringify({name:v('biz-name').trim(),phone:v('biz-phone').trim(),email:v('biz-email').trim(),address:v('biz-address').trim()}));alert('Saved!');closeModal();}
+function openPaySettings(){
+  const cfg=JSON.parse(localStorage.getItem('ssp_pay_cfg')||'{}');
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong style="font-size:17px">Payment handles</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:14px">Enter once — used on every payment request.</div>
+    <label>💜 Zelle (email or phone)</label><input id="ps-zelle" placeholder="you@email.com" value="${cfg.zelle||''}">
+    <label>✌️ Venmo handle (no @)</label><input id="ps-venmo" placeholder="yourhandle" value="${cfg.venmo||''}">
+    <label>💵 Cash App $Cashtag (no $)</label><input id="ps-cashapp" placeholder="yourcashtag" value="${cfg.cashapp||''}">
+    <label>🅿️ PayPal.me username</label><input id="ps-paypal" placeholder="yourusername" value="${cfg.paypal||''}">
+    <label>💳 Stripe payment link</label><input id="ps-stripe" placeholder="https://buy.stripe.com/..." value="${cfg.stripe||''}">
+    <label>⬛ Square payment link</label><input id="ps-square" placeholder="https://square.link/..." value="${cfg.square||''}">
+    <button class="btn btn-primary" style="width:100%;margin-top:18px" onclick="savePaySettings()">Save</button>`);
+}
+function savePaySettings(){localStorage.setItem('ssp_pay_cfg',JSON.stringify({zelle:v('ps-zelle').trim(),venmo:v('ps-venmo').trim(),cashapp:v('ps-cashapp').trim(),paypal:v('ps-paypal').trim(),stripe:v('ps-stripe').trim(),square:v('ps-square').trim()}));alert('Saved!');closeModal();}
+
+// ---- REPORTS ----
+function renderReports(){
+  const m=parseInt(v('report-month')),y=now.getFullYear();
+  const mA=state.appointments.filter(a=>{const d=new Date(a.date);return d.getMonth()===m&&d.getFullYear()===y&&a.status==='paid';});
+  const inc=mA.reduce((s,a)=>s+parseFloat(a.amount||0),0);const tips=mA.reduce((s,a)=>s+parseFloat(a.tip||0),0);
+  const mE=state.expenses.filter(e=>{const d=new Date(e.date);return d.getMonth()===m&&d.getFullYear()===y;});
+  const exp=mE.reduce((s,e)=>s+parseFloat(e.amount||0),0);const profit=inc+tips-exp;
+  document.getElementById('report-stats').innerHTML=statCard('Revenue',fmt(inc+tips),'var(--g)')+statCard('Net profit',fmt(profit),profit>=0?'var(--g)':'var(--r)');
+  document.getElementById('pl-table').innerHTML=`<div class="pl"><span>Service income</span><span style="color:var(--g)">${fmt(inc)}</span></div><div class="pl"><span>Tips</span><span style="color:var(--cy)">${fmt(tips)}</span></div><div class="pl"><span>Total revenue</span><span style="color:var(--g)">${fmt(inc+tips)}</span></div><div class="pl"><span>Expenses</span><span style="color:var(--r)">– ${fmt(exp)}</span></div><div class="pl"><span>Net profit</span><span style="color:${profit>=0?'var(--g)':'var(--r)'}}">${fmt(profit)}</span></div><div class="pl" style="font-size:13px;font-weight:400"><span style="color:var(--gray)">SE tax est. (15.3%)</span><span style="color:var(--am)">${fmt(Math.max(0,profit*.153))}</span></div>`;
+  const cats={};mE.forEach(e=>{cats[e.category]=(cats[e.category]||0)+parseFloat(e.amount||0);});
+  document.getElementById('exp-breakdown').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([cat,amt])=>`<div class="pl"><span style="font-size:13px">${cat}</span><span>${fmt(amt)}</span></div>`).join('')||'<div class="empty" style="padding:12px">No expenses this month</div>';
+  const weeks=[0,0,0,0,0];mA.forEach(a=>{const d=new Date(a.date);weeks[Math.min(4,Math.floor((d.getDate()-1)/7))]+=parseFloat(a.amount||0)+parseFloat(a.tip||0);});
+  const wmax=Math.max(...weeks,1);
+  document.getElementById('weekly-chart').innerHTML=weeks.map((val,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div class="bar" style="height:${Math.max(4,Math.round(val/wmax*64))}px;background:var(--pk);width:100%"></div></div>`).join('');
+  document.getElementById('weekly-labels').innerHTML=weeks.map((_,i)=>`<div style="flex:1;font-size:9px;color:var(--gray);text-align:center">Wk${i+1}</div>`).join('');
+}
+
+// ---- TAXES ----
+function renderTaxes(){
+  const y=now.getFullYear();
+  document.getElementById('quarter-tabs').innerHTML=QUARTERS.map((q,i)=>{
+    const inc=state.appointments.filter(a=>{const d=new Date(a.date);return q.months.includes(d.getMonth())&&d.getFullYear()===y&&a.status==='paid';}).reduce((s,a)=>s+parseFloat(a.amount||0)+parseFloat(a.tip||0),0);
+    const exp=state.expenses.filter(e=>{const d=new Date(e.date);return q.months.includes(d.getMonth())&&d.getFullYear()===y;}).reduce((s,e)=>s+parseFloat(e.amount||0),0);
+    const tax=Math.max(0,(inc-exp)*.153*.9235);
+    return`<div class="qcard${i===state.selectedQuarter?' active':''}" onclick="selQ(${i})"><div class="ql">${q.label}</div><div class="qd">${q.dates}</div><div class="qs">${fmt(tax)}</div></div>`;
+  }).join('');
+  renderTaxDetail(state.selectedQuarter);
+}
+function selQ(i){state.selectedQuarter=i;renderTaxes();}
+function renderTaxDetail(qi){
+  const q=QUARTERS[qi],y=now.getFullYear();
+  const inc=state.appointments.filter(a=>{const d=new Date(a.date);return q.months.includes(d.getMonth())&&d.getFullYear()===y&&a.status==='paid';}).reduce((s,a)=>s+parseFloat(a.amount||0)+parseFloat(a.tip||0),0);
+  const exp=state.expenses.filter(e=>{const d=new Date(e.date);return q.months.includes(d.getMonth())&&d.getFullYear()===y;}).reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  const profit=Math.max(0,inc-exp);const seTax=profit*.153*.9235;
+  document.getElementById('tax-content').innerHTML=`
+    <div class="irs-box"><h3>${q.label} ${y} · ${q.dates}</h3><p>SE tax estimate · Due ${q.deadline}, ${y}</p><div class="irs-amount">${fmt(seTax)}</div><div class="irs-deadline">Due: ${q.deadline}, ${y}</div><br><a class="irs-btn" href="https://www.irs.gov/payments/direct-pay" target="_blank" rel="noopener">Pay on IRS Direct Pay →</a></div>
+    <div class="card"><div class="card-title" style="margin-bottom:10px">${q.label} breakdown</div><div class="pl"><span>Gross revenue</span><span style="color:var(--g)">${fmt(inc)}</span></div><div class="pl"><span>Expenses</span><span style="color:var(--r)">– ${fmt(exp)}</span></div><div class="pl"><span>Net profit</span><span>${fmt(profit)}</span></div><div class="pl"><span>× 92.35%</span><span>${fmt(profit*.9235)}</span></div><div class="pl"><span>× 15.3% SE tax</span><span style="color:var(--am);font-weight:700">${fmt(seTax)}</span></div></div>
+    <div class="card"><div class="card-title" style="margin-bottom:10px">Payment instructions</div><p style="font-size:13px;line-height:1.8;color:#374151"><strong>1.</strong> Tap "Pay on IRS Direct Pay" above.<br><strong>2.</strong> Select <em>Estimated Tax</em>.<br><strong>3.</strong> Enter tax year <strong>${y}</strong>.<br><strong>4.</strong> Pay via bank (free) or card.</p><div style="background:var(--pkl);border-radius:10px;padding:14px;margin-top:12px;text-align:center"><div style="font-size:11px;color:var(--gray);margin-bottom:4px">Copy this amount</div><div style="font-size:26px;font-weight:800;color:var(--pk)">${fmt(seTax)}</div><div style="font-size:11px;color:var(--gray);margin-top:2px">${q.label} ${y} · SE Tax</div></div></div>
+    <div class="card" style="background:var(--aml);border-color:#fde68a"><div style="font-size:13px;color:#92400e"><strong>All ${y} deadlines:</strong><br>Q1 → Apr 15 · Q2 → Jun 16 · Q3 → Sep 15 · Q4 → Jan 15, ${y+1}</div></div>`;
+}
+
+// ---- BALANCE SHEET ----
+function addBsItem(){
+  const cat=v('bs-cat'),desc=v('bs-desc').trim(),amt=parseFloat(v('bs-amt')||0);
+  if(!desc||!amt){alert('Description and amount required.');return;}
+  const[type,sub]=cat.split(':');
+  state.bsItems.push({type,sub,desc,amount:amt});
+  document.getElementById('bs-desc').value='';document.getElementById('bs-amt').value='';
+  renderBalance();
+}
+function delBsItem(i){state.bsItems.splice(i,1);renderBalance();}
+function renderBalance(){
+  const y=parseInt(v('bs-year'));
+  const yA=state.appointments.filter(a=>new Date(a.date).getFullYear()===y&&a.status==='paid');
+  const yInc=yA.reduce((s,a)=>s+parseFloat(a.amount||0)+parseFloat(a.tip||0),0);
+  const yExp=state.expenses.filter(e=>new Date(e.date).getFullYear()===y).reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  const yProfit=yInc-yExp;
+  const unp=state.invoices.filter(i=>i.status==='sent'||i.status==='overdue').reduce((s,i)=>s+i.total,0);
+  const assets=state.bsItems.filter(i=>i.type==='asset');const liabs=state.bsItems.filter(i=>i.type==='liability');
+  const totA=assets.reduce((s,i)=>s+i.amount,0)+unp;const totL=liabs.reduce((s,i)=>s+i.amount,0);const totE=yProfit+totA-totL;
+  document.getElementById('bs-summary').innerHTML=statCard('Assets',fmt(totA),'var(--g)')+statCard('Liabilities',fmt(totL),'var(--r)')+statCard('Equity',fmt(totE),totE>=0?'var(--pk)':'var(--r)');
+  const aRows=[...assets.map(it=>`<div class="pl"><span>${it.desc}<br><span style="font-size:11px;color:var(--gray)">${it.sub}</span></span><span style="display:flex;align-items:center;gap:8px"><span style="color:var(--g)">${fmt(it.amount)}</span><button class="btn btn-danger btn-xs" onclick="delBsItem(${state.bsItems.indexOf(it)})">✕</button></span></div>`),unp>0?`<div class="pl"><span>Accounts receivable</span><span style="color:var(--g)">${fmt(unp)}</span></div>`:''].filter(Boolean).join('');
+  document.getElementById('bs-assets').innerHTML=aRows||'<div style="font-size:13px;color:var(--gray);padding:8px 0">No assets added yet</div>';
+  document.getElementById('bs-assets-total').innerHTML=`<span>Total assets</span><span style="color:var(--g)">${fmt(totA)}</span>`;
+  document.getElementById('bs-liabilities').innerHTML=liabs.map(it=>`<div class="pl"><span>${it.desc}<br><span style="font-size:11px;color:var(--gray)">${it.sub}</span></span><span style="display:flex;align-items:center;gap:8px"><span style="color:var(--r)">${fmt(it.amount)}</span><button class="btn btn-danger btn-xs" onclick="delBsItem(${state.bsItems.indexOf(it)})">✕</button></span></div>`).join('')||'<div style="font-size:13px;color:var(--gray);padding:8px 0">No liabilities added yet</div>';
+  document.getElementById('bs-liab-total').innerHTML=`<span>Total liabilities</span><span style="color:var(--r)">${fmt(totL)}</span>`;
+  document.getElementById('bs-equity').innerHTML=`<div class="pl"><span>Net profit (${y})</span><span style="color:${yProfit>=0?'var(--g)':'var(--r)'}">${fmt(yProfit)}</span></div><div class="pl"><span>Assets</span><span>${fmt(totA)}</span></div><div class="pl"><span>Liabilities</span><span style="color:var(--r)">– ${fmt(totL)}</span></div>`;
+  document.getElementById('bs-equity-total').innerHTML=`<span>Total equity</span><span style="color:${totE>=0?'var(--pk)':'var(--r)'}">${fmt(totE)}</span>`;
+  let insight='';
+  if(!totL&&!totA)insight='Add your cash, equipment, and debts using the form below to build your balance sheet.';
+  else if(totE<0)insight=`Liabilities exceed assets by ${fmt(Math.abs(totE))}. Consider paying down debt or increasing revenue.`;
+  else if(!totL)insight='No recorded liabilities — your business is debt-free!';
+  else{const r=(totL/Math.max(totA,1)*100).toFixed(0);insight=`Debt-to-asset ratio: ${r}%. ${r<50?'Healthy — you own more than you owe.':'Consider reducing liabilities.'}`;}
+  document.getElementById('bs-insight').textContent=insight;
+}
+
+function openDataManager(){
+  const bytes=JSON.stringify(state).length;
+  const kb=(bytes/1024).toFixed(1);
+  const appts=state.appointments.length,clients=state.clients.length,expenses=state.expenses.length,invoices=state.invoices.length;
+  openModal(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong style="font-size:17px">🛟 Data & backup</strong><button class="btn btn-secondary btn-xs" onclick="closeModal()">✕ Close</button></div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:16px">Your data auto-saves to this browser. Use backups to protect against clearing your browser or switching devices.</div>
+
+    <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:14px;margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:#15803d;margin-bottom:8px">✓ Auto-save is ON</div>
+      <div style="font-size:13px;color:#14532d;line-height:1.8">
+        ${appts} appointments · ${clients} clients<br>
+        ${expenses} expenses · ${invoices} invoices<br>
+        <span style="color:#6b7280;font-size:12px">Storage used: ~${kb} KB</span>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px">Backup & restore</div>
+    <button class="btn btn-primary" style="width:100%;margin-bottom:8px" onclick="backupData()">📥 Download backup file (.json)</button>
+    <div style="position:relative;margin-bottom:16px">
+      <button class="btn btn-secondary" style="width:100%" onclick="document.getElementById('restore-file').click()">📤 Restore from backup file</button>
+      <input type="file" id="restore-file" accept=".json" style="display:none" onchange="restoreData(this)">
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px">Danger zone</div>
+    <button class="btn" style="width:100%;background:#fee2e2;color:#b91c1c;border:1.5px solid #fca5a5" onclick="clearAllData()">🗑 Clear all data</button>
+    <div style="font-size:12px;color:var(--gray);margin-top:8px;text-align:center">Download a backup first! This cannot be undone.</div>
+  `);
+}
+
+function backupData(){
+  const backup={version:'1.0',exported:new Date().toISOString(),state};
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`ssp_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
+}
+
+function restoreData(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const backup=JSON.parse(e.target.result);
+      if(!backup.state)throw new Error('Invalid backup file');
+      if(!confirm(`Restore backup from ${backup.exported?.slice(0,10)||'unknown date'}?\n\nThis will replace all current data.`))return;
+      Object.assign(state,backup.state);
+      autoSave();closeModal();renderDashboard();
+      alert('✓ Data restored successfully!');
+    }catch(err){alert('Could not read backup file. Make sure it\'s a valid Solo Service Pro backup.');}
+  };
+  reader.readAsText(file);
+  input.value='';
+}
+
+function clearAllData(){
+  if(!confirm('Are you sure? This will permanently delete ALL your data.\n\nDownload a backup first!'))return;
+  if(!confirm('Last warning — this cannot be undone. Delete everything?'))return;
+  state={appointments:[],clients:[],expenses:[],invoices:[],bsItems:[],reminderLog:[],invoiceCounter:1000,selectedQuarter:0};
+  autoSave();closeModal();renderDashboard();
+  alert('All data cleared.');
+}
+
+// ---- EXPORT ----
+function exportCSV(type){
+  let rows=[],filename='';
+  const m=parseInt(document.getElementById('report-month')?.value??now.getMonth()),y=now.getFullYear();
+  if(type==='appointments'){filename='appointments.csv';rows=[['Date','Client','Service','Amount','Tip','Total','Method','Status']];state.appointments.forEach(a=>{const tip=parseFloat(a.tip||0);rows.push([a.date,a.client,a.service||'',parseFloat(a.amount||0).toFixed(2),tip.toFixed(2),(parseFloat(a.amount||0)+tip).toFixed(2),a.method,a.status]);});}
+  else if(type==='expenses'){filename='expenses.csv';rows=[['Date','Description','Category','Amount']];state.expenses.forEach(e=>rows.push([e.date,e.description,e.category,parseFloat(e.amount||0).toFixed(2)]));}
+  else if(type==='clients'){filename='clients.csv';rows=[['Name','Phone','Email','Since','Visits','Services','Tips','Total','Notes']];state.clients.forEach(c=>{const ap=state.appointments.filter(a=>a.client.toLowerCase()===c.name.toLowerCase());const svc=ap.reduce((s,a)=>s+parseFloat(a.amount||0),0);const tips=ap.reduce((s,a)=>s+parseFloat(a.tip||0),0);rows.push([c.name,c.phone||'',c.email||'',c.since||'',ap.length,svc.toFixed(2),tips.toFixed(2),(svc+tips).toFixed(2),c.notes||'']);});}
+  else if(type==='invoices'){filename='invoices.csv';rows=[['Invoice #','Client','Services','Total','Due','Status','Created']];state.invoices.forEach(inv=>rows.push([inv.id,inv.client,inv.lines.map(l=>l.desc).join('; '),inv.total.toFixed(2),inv.due,inv.status,inv.created]));}
+  else if(type==='balance'){
+    const by=parseInt(v('bs-year'));const yA2=state.appointments.filter(a=>new Date(a.date).getFullYear()===by&&a.status==='paid');const yI=yA2.reduce((s,a)=>s+parseFloat(a.amount||0)+parseFloat(a.tip||0),0);const yE=state.expenses.filter(e=>new Date(e.date).getFullYear()===by).reduce((s,e)=>s+parseFloat(e.amount||0),0);const yP=yI-yE;const unp=state.invoices.filter(i=>i.status==='sent'||i.status==='overdue').reduce((s,i)=>s+i.total,0);const assets=state.bsItems.filter(i=>i.type==='asset');const liabs=state.bsItems.filter(i=>i.type==='liability');const tA=assets.reduce((s,i)=>s+i.amount,0)+unp;const tL=liabs.reduce((s,i)=>s+i.amount,0);
+    filename=`balance_${by}.csv`;rows=[['Balance Sheet',by],[''],['ASSETS'],['Description','Category','Amount'],...assets.map(i=>[i.desc,i.sub,'$'+i.amount.toFixed(2)]),unp>0?['Accounts receivable','invoices','$'+unp.toFixed(2)]:undefined,['','Total assets','$'+tA.toFixed(2)],[''],['LIABILITIES'],['Description','Category','Amount'],...liabs.map(i=>[i.desc,i.sub,'$'+i.amount.toFixed(2)]),['','Total liabilities','$'+tL.toFixed(2)],[''],["OWNER'S EQUITY"],['Net profit','','$'+yP.toFixed(2)],['Assets','','$'+tA.toFixed(2)],['Liabilities','','$'+tL.toFixed(2)],['','Total equity','$'+(yP+tA-tL).toFixed(2)]].filter(Boolean);
+  }else if(type==='report'){
+    const mA=state.appointments.filter(a=>{const d=new Date(a.date);return d.getMonth()===m&&d.getFullYear()===y&&a.status==='paid';});const inc=mA.reduce((s,a)=>s+parseFloat(a.amount||0),0);const tips=mA.reduce((s,a)=>s+parseFloat(a.tip||0),0);const mE2=state.expenses.filter(e=>{const d=new Date(e.date);return d.getMonth()===m&&d.getFullYear()===y;});const exp=mE2.reduce((s,e)=>s+parseFloat(e.amount||0),0);const profit=inc+tips-exp;const cats={};mE2.forEach(e=>{cats[e.category]=(cats[e.category]||0)+parseFloat(e.amount||0);});
+    filename=`report_${MONTHS[m]}_${y}.csv`;rows=[['Monthly Report',MONTHS[m]+' '+y],[''],['INCOME'],['Service income','$'+inc.toFixed(2)],['Tips','$'+tips.toFixed(2)],['Total','$'+(inc+tips).toFixed(2)],[''],['EXPENSES','$'+exp.toFixed(2)],[''],['NET PROFIT','$'+profit.toFixed(2)],['SE tax est.','$'+Math.max(0,profit*.153).toFixed(2)],[''],['BREAKDOWN'],['Category','Amount'],...Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([c2,a2])=>[c2,'$'+a2.toFixed(2)]),[''],['APPOINTMENTS'],['Date','Client','Service','Amount','Tip','Total'],...mA.map(a=>[a.date,a.client,a.service||'',parseFloat(a.amount||0).toFixed(2),parseFloat(a.tip||0).toFixed(2),(parseFloat(a.amount||0)+parseFloat(a.tip||0)).toFixed(2)])];
+  }
+  const csv=rows.map(r=>r.map(c2=>`"${String(c2).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);
+}
+
+// ---- SEED (only on first load, no existing data) ----
+(function(){
+  if(state.appointments.length>0){renderDashboard();return;}
+  const tomorrow=new Date(now);tomorrow.setDate(tomorrow.getDate()+1);tomorrow.setHours(10,0,0,0);
+  const tomorrow2=new Date(now);tomorrow2.setDate(tomorrow2.getDate()+2);tomorrow2.setHours(14,30,0,0);
+  const nxt=new Date(now);nxt.setDate(nxt.getDate()+5);nxt.setHours(11,0,0,0);
+  const toISO=d=>{const s=new Date(d);s.setMinutes(s.getMinutes()-s.getTimezoneOffset());return s.toISOString().slice(0,16);};
+  [{date:'2025-04-01T09:00',client:'Maria Lopez',service:'Blowout',amount:'65',tip:'10',method:'Venmo',status:'paid',reminderSent:true},
+   {date:'2025-04-03T11:00',client:'Tasha Green',service:'Color & cut',amount:'180',tip:'25',method:'Card',status:'paid',reminderSent:true},
+   {date:'2025-04-05T10:00',client:'Jen Kim',service:'Personal training',amount:'80',tip:'15',method:'Zelle',status:'paid',reminderSent:true},
+   {date:toISO(tomorrow),client:'Maria Lopez',service:'Trim & blowout',amount:'75',tip:'',method:'Venmo',status:'pending',reminderSent:false},
+   {date:toISO(tomorrow2),client:'Rachel Torres',service:'Manicure',amount:'45',tip:'',method:'Cash',status:'pending',reminderSent:false},
+   {date:toISO(nxt),client:'Jen Kim',service:'Training session',amount:'80',tip:'',method:'Zelle',status:'pending',reminderSent:false}
+  ].forEach(a=>addAppt(a));
+  state.expenses.push({date:'2025-04-02',description:'Salon supplies',category:'Supplies & products',amount:'95'},{date:'2025-04-05',description:'Booth rent',category:'Rent / booth fee',amount:'300'},{date:'2025-04-07',description:'Instagram ads',category:'Marketing',amount:'40'});
+  state.invoices.push({id:'INV-1000',client:'Tasha Green',lines:[{desc:'Color & cut',amount:180}],total:180,due:'2025-04-20',notes:'',status:'sent',created:'2025-04-03'});
+  state.bsItems.push({type:'asset',sub:'bank',desc:'Chase checking',amount:2400},{type:'asset',sub:'equipment',desc:'Styling chair & tools',amount:850},{type:'liability',sub:'credit',desc:'Business credit card',amount:320});
+  renderDashboard();
+})();
+</script>
+</body>
+</html>
